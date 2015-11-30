@@ -3,5 +3,7 @@
 extern crate sfml;
 
 pub mod prelude;
-pub mod object;
 pub mod window;
+pub mod circle;
+pub mod rect;
+pub mod sprite;

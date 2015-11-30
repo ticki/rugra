@@ -1,2 +1,4 @@
 pub use window::Window;
-pub use object::Object;
+pub use circle::Circle;
+pub use rect::Rect;
+pub use sprite::Sprite;

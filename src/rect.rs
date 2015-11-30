@@ -3,27 +3,33 @@ use sfml::system::vector2::Vector2f;
 
 use window::Window;
 
-pub struct Circle {
+pub struct Rect {
     pub x: f32,
     pub y: f32,
-    pub radius: f32,
+    pub w: f32,
+    pub h: f32,
     color: [u8; 3],
     alpha: u8,
 }
 
-impl Circle {
+impl Rect {
     pub fn new(x: f32, y: f32) -> Self {
-        Circle {
+        Rect {
             x: x,
             y: y,
-            radius: 1.0,
+            w: 1.0,
+            h: 1.0,
             color: [255; 3],
             alpha: 255,
         }
     }
 
-    pub fn radius(&mut self, r: f32) -> &mut Self {
-        self.radius = r;
+    pub fn width(&mut self, w: f32) -> &mut Self {
+        self.w = w;
+        self
+    }
+    pub fn height(&mut self, h: f32) -> &mut Self {
+        self.h = h;
         self
     }
 
@@ -48,10 +54,10 @@ impl Circle {
     }
 
     pub fn draw(&self, window: &mut Window) {
-        let mut shape = CircleShape::new().unwrap();
+        let mut shape = RectangleShape::new().unwrap();
         shape.set_position2f(self.x, self.y);
         shape.set_fill_color(&Color::new_rgba(self.color[0], self.color[1], self.color[2], self.alpha));
-        shape.set_radius(self.radius);
+        shape.set_size(&Vector2f::new(self.w, self.h));
 
         window.sfml_window().draw(&mut shape);
 

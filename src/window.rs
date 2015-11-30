@@ -1,9 +1,10 @@
 use sfml::window::{ContextSettings, VideoMode, Close};
 use sfml::window::event::Event;
-use object::Object;
-use sfml::graphics::{RenderWindow, RenderTarget, Color};
+use sfml::graphics::{RenderWindow, RenderTarget, Color, View};
+use sfml::system::vector2::Vector2f;
 
 use std::mem;
+use std::thread;
 
 pub struct EventState {
     right: bool,
@@ -43,6 +44,7 @@ impl Window {
         s.x = width;
 
         self.window.set_size(&s);
+        self.goto(0.0, 0.0);
 
         self
 
@@ -53,6 +55,7 @@ impl Window {
         s.y = height;
 
         self.window.set_size(&s);
+        self.goto(0.0, 0.0);
 
         self
 
@@ -92,12 +95,15 @@ impl Window {
         mem::replace(&mut self.event.keys, String::new())
     }
 
-    pub fn update(&mut self, obj: &mut [Object]) {
-        self.window.clear(&Color::new_rgb(0, 200, 200));
+    pub fn clear(&mut self, r: u8, g: u8, b: u8) {
+        self.window.clear(&Color::new_rgb(r, g, b));
 
         self.event.keys.clear();
         self.event.left = false;
         self.event.right = false;
+    }
+
+    pub fn listen(&mut self) {
 
         for e in self.window.events() {
             match e {
@@ -109,12 +115,23 @@ impl Window {
                 _ => {},
             }
         }
+    }
 
-        for d in obj {
-            d.draw(&mut self.window);
-        }
+    pub fn update(&mut self) -> bool {
+        thread::sleep_ms(50);
 
         self.window.display();
 
+        self.is_open()
+
+    }
+
+    pub fn goto(&mut self, x: f32, y: f32) {
+        let size = self.window.get_size();
+        self.window.set_view(&View::new_init(&Vector2f::new(x, y), &Vector2f::new(size.x as f32, size.y as f32)).unwrap());
+    }
+
+    pub fn sfml_window(&mut self) -> &mut RenderWindow {
+        &mut self.window
     }
 }
