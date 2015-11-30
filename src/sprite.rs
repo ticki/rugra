@@ -1,6 +1,5 @@
-use sfml::graphics::{RenderWindow, RenderTarget, CircleShape, RectangleShape, Text, Color};
+use sfml::graphics::RenderTarget;
 use sfml::graphics::Sprite as SfmlSprite;
-use sfml::system::vector2::Vector2f;
 
 use window::Window;
 use texture::Texture;
@@ -42,8 +41,8 @@ impl<'a> Sprite<'a> {
     }
 
     pub fn go(&mut self, x: f32, y: f32) -> &mut Self {
-        let pos = self.sprite.get_position();
-        self.sprite.set_position(&(pos + Vector2f::new(x, y)));
+        let (px, py) = self.pos();
+        self.set((px + x, py + y));
         self
     }
 
@@ -58,5 +57,25 @@ impl<'a> Sprite<'a> {
         self.go(angle.cos() * size, angle.sin() * size);
 
         self
+    }
+
+    pub fn length_to(&self, (x, y): (f32, f32)) -> f32 {
+        let pos = self.sprite.get_position();
+
+        let dx = x - pos.x;
+        let dy = y - pos.y;
+
+        (dx * dx + dy * dy).sqrt()
+    }
+
+    pub fn set(&mut self, (x, y): (f32, f32)) -> &mut Self {
+        self.x(x);
+        self.y(y)
+    }
+
+    pub fn pos(&self) -> (f32, f32) {
+        let pos = self.sprite.get_position();
+
+        (pos.x, pos.y)
     }
 }

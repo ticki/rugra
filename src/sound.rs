@@ -1,5 +1,4 @@
 use sfml::audio::Music as SfmlSound;
-use sfml::audio::SoundBuffer;
 
 pub struct Sound {
     sound: SfmlSound,

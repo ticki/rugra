@@ -1,7 +1,7 @@
 use sfml::window::{ContextSettings, VideoMode, Close};
 use sfml::window::event::Event;
 use sfml::graphics::{RenderWindow, RenderTarget, Color, View};
-use sfml::system::vector2::Vector2f;
+use sfml::system::vector2::{Vector2f, ToVec};
 
 use std::mem;
 use std::thread;
@@ -61,17 +61,17 @@ impl Window {
 
     }
 
-    pub fn mouse(&self) -> (u32, u32) {
-        let pos = self.window.get_mouse_position();
+    pub fn mouse(&self) -> (f32, f32) {
+        let pos = self.window.get_mouse_position().to_vector2f();
 
-        (pos.x as u32, pos.y as u32)
+        (pos.x, pos.y)
     }
 
-    pub fn mx(&self) -> u32 {
+    pub fn mx(&self) -> f32 {
         self.mouse().0
     }
 
-    pub fn my(&self) -> u32 {
+    pub fn my(&self) -> f32 {
         self.mouse().1
     }
 
@@ -127,8 +127,8 @@ impl Window {
     }
 
     pub fn goto(&mut self, x: f32, y: f32) {
-        let size = self.window.get_size();
-        self.window.set_view(&View::new_init(&Vector2f::new(x, y), &Vector2f::new(size.x as f32, size.y as f32)).unwrap());
+        let size = self.window.get_size().to_vector2f();
+        self.window.set_view(&View::new_init(&(Vector2f::new(x, y) + size / 2.0), &size).unwrap());
     }
 
     pub fn sfml_window(&mut self) -> &mut RenderWindow {
