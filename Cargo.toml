@@ -1,0 +1,7 @@
+[package]
+name = "rugra"
+version = "0.1.0"
+authors = ["Ticki <Ticki@users.noreply.github.com>"]
+
+[dependencies]
+sfml = "*"
