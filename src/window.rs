@@ -112,6 +112,14 @@ impl Window {
                 } => self.event.keys.push(c),
                 Event::MouseLeft => self.event.left = true,
                 Event::MouseEntered => self.event.right = true,
+                Event::Closed => self.window.close(),
+                Event::Resized {
+                    width,
+                    height,
+                } => {
+                    self.width(width);
+                    self.height(height);
+                },
                 _ => {},
             }
         }

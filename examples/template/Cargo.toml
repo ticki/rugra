@@ -3,4 +3,5 @@ name = "template"
 version = "0.1.0"
 authors = ["Ticki <Ticki@users.noreply.github.com>"]
 
-[dependencies]
+[dependencies.rugra]
+git = "https://github.com/ticki/rugra.git"
