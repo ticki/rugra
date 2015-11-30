@@ -1,5 +1,6 @@
 use sfml::graphics::Font as SfmlFont;
 
+/// Font
 pub struct Font {
     font: SfmlFont,
 }

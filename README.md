@@ -16,3 +16,5 @@ features.
 To get rugra working, you have to install
 CSFML, either by using you package manager
 or downloading and bulding it manually.
+
+[docs](http://ticki.github.io/rugra/doc/rugra/index.html)

@@ -1,5 +1,6 @@
 use sfml::graphics::Texture as SfmlTexture;
 
+/// Texture
 pub struct Texture {
     texture: SfmlTexture,
 }
