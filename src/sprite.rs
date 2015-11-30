@@ -1,8 +1,9 @@
-use sfml::graphics::{RenderWindow, RenderTarget, CircleShape, RectangleShape, Text, Color, Texture};
+use sfml::graphics::{RenderWindow, RenderTarget, CircleShape, RectangleShape, Text, Color};
 use sfml::graphics::Sprite as SfmlSprite;
 use sfml::system::vector2::Vector2f;
 
 use window::Window;
+use texture::Texture;
 
 pub struct Sprite {
     pub x: f32,
@@ -11,15 +12,11 @@ pub struct Sprite {
 }
 
 impl Sprite {
-    pub fn new(f: &str) -> Self {
+    pub fn new() -> Self {
         Sprite {
             x: 1.0,
             y: 1.0,
-            w: 1.0,
-            h: 1.0,
-            color: [255; 3],
-            alpha: 255,
-            texture: Texture::new_from_file(f).expect("Couldn't load sprite"),
+            texture: Texture::empty(),
         }
     }
 
@@ -33,10 +30,15 @@ impl Sprite {
         self
     }
 
+    pub fn texture(&mut self, texture: Texture) -> &mut Self {
+        self.texture = texture;
+        self
+    }
+
     pub fn draw(&self, window: &mut Window) {
         let mut shape = SfmlSprite::new().unwrap();
         shape.set_position2f(self.x, self.y);
-        shape.set_texture(&self.texture, true);
+        shape.set_texture(self.texture.to_sfml_texture(), true);
 
         window.sfml_window().draw(&mut shape);
 
