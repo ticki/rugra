@@ -26,7 +26,7 @@ fn main() {
         circle
             .x(x).y(10.0)
             .radius(100.0)
-            .color(50, 50, 0);
+            .color(50, 250, 0);
 
         if circle.length_to(window.mouse()) < 50.0 {
             circle.color(0, 0, 255);
