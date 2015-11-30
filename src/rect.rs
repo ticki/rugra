@@ -1,4 +1,4 @@
-use sfml::graphics::{RenderWindow, RenderTarget, CircleShape, RectangleShape, Sprite, Text, Color};
+use sfml::graphics::{RenderWindow, RenderTarget, CircleShape, RectangleShape, Text, Color};
 use sfml::system::vector2::Vector2f;
 
 use window::Window;
@@ -47,6 +47,25 @@ impl<'a> Rect<'a> {
         let mut color = self.rect.get_fill_color();
         color.alpha = a;
         self.rect.set_fill_color(&color);
+        self
+    }
+
+    pub fn go(&mut self, x: f32, y: f32) -> &mut Self {
+        let pos = self.rect.get_position();
+        self.rect.set_position(&(pos + Vector2f::new(x, y)));
+        self
+    }
+
+    pub fn rotate(&mut self, a: f32) -> &mut Self {
+        self.rect.rotate(a);
+        self
+    }
+
+    pub fn step(&mut self, size: f32) -> &mut Self {
+        let angle = size.to_radians();
+
+        self.go(angle.cos() * size, angle.sin() * size);
+
         self
     }
 

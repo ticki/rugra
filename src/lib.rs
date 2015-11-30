@@ -1,3 +1,4 @@
+#![feature(float_extras)]
 #![allow(dead_code)]
 
 extern crate sfml;

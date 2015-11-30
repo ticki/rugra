@@ -39,6 +39,24 @@ impl<'a> Sprite<'a> {
 
     pub fn draw(&mut self, window: &mut Window) {
         window.sfml_window().draw(&mut self.sprite);
+    }
 
+    pub fn go(&mut self, x: f32, y: f32) -> &mut Self {
+        let pos = self.sprite.get_position();
+        self.sprite.set_position(&(pos + Vector2f::new(x, y)));
+        self
+    }
+
+    pub fn rotate(&mut self, a: f32) -> &mut Self {
+        self.sprite.rotate(a);
+        self
+    }
+
+    pub fn step(&mut self, size: f32) -> &mut Self {
+        let angle = size.to_radians();
+
+        self.go(angle.cos() * size, angle.sin() * size);
+
+        self
     }
 }

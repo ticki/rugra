@@ -43,6 +43,25 @@ impl<'a> Circle<'a> {
         self
     }
 
+    pub fn go(&mut self, x: f32, y: f32) -> &mut Self {
+        let pos = self.circle.get_position();
+        self.circle.set_position(&(pos + Vector2f::new(x, y)));
+        self
+    }
+
+    pub fn rotate(&mut self, a: f32) -> &mut Self {
+        self.circle.rotate(a);
+        self
+    }
+
+    pub fn step(&mut self, size: f32) -> &mut Self {
+        let angle = size.to_radians();
+
+        self.go(angle.cos() * size, angle.sin() * size);
+
+        self
+    }
+
     pub fn draw(&mut self, window: &mut Window) {
         window.sfml_window().draw(&mut self.circle);
 
