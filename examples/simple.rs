@@ -22,7 +22,14 @@ fn main() {
             break;
         }
 
-        Rect::new().x(x).y(10.0).width(100.0).height(50.0).color(50, 50, 0).draw(&mut window);
+        Circle::new().x(x).y(10.0).radius(100.0).color(50, 50, 0).draw(&mut window);
+
+        let font = Font::load("assets/font.ttf");
+        let icon = Texture::load("assets/icon.png");
+
+        Label::new(&font).text("Press A or D").x(0.0).y(x).color(255, 255, 255).size(30).draw(&mut window);
+
+        Sprite::new().texture(&icon).x(0.1).y(x * x).draw(&mut window);
     }
 
 
