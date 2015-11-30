@@ -5,42 +5,40 @@ use sfml::system::vector2::Vector2f;
 use window::Window;
 use texture::Texture;
 
-pub struct Sprite {
-    pub x: f32,
-    pub y: f32,
-    texture: Texture,
+pub struct Sprite<'a> {
+    sprite: SfmlSprite<'a>,
 }
 
-impl Sprite {
+impl<'a> Sprite<'a> {
     pub fn new() -> Self {
         Sprite {
-            x: 1.0,
-            y: 1.0,
-            texture: Texture::empty(),
+            sprite: SfmlSprite::new().unwrap(),
         }
     }
 
     pub fn x(&mut self, x: f32) -> &mut Self {
-        self.x = x;
+        let y = self.sprite.get_position().y;
+        self.sprite.set_position2f(x, y);
         self
     }
 
     pub fn y(&mut self, y: f32) -> &mut Self {
-        self.y = y;
+        let x = self.sprite.get_position().x;
+        self.sprite.set_position2f(x, y);
         self
     }
 
-    pub fn texture(&mut self, texture: Texture) -> &mut Self {
-        self.texture = texture;
+    pub fn texture(&mut self, texture: &'a Texture) -> &mut Self {
+        self.sprite.set_texture(texture.to_sfml_texture(), true);
         self
     }
 
-    pub fn draw(&self, window: &mut Window) {
-        let mut shape = SfmlSprite::new().unwrap();
-        shape.set_position2f(self.x, self.y);
-        shape.set_texture(self.texture.to_sfml_texture(), true);
+    pub fn sfml_sprite(&mut self) -> &mut SfmlSprite<'a> {
+        &mut self.sprite
+    }
 
-        window.sfml_window().draw(&mut shape);
+    pub fn draw(&mut self, window: &mut Window) {
+        window.sfml_window().draw(&mut self.sprite);
 
     }
 }

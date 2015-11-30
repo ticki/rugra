@@ -22,7 +22,7 @@ fn main() {
             break;
         }
 
-        Rect::new(x, 10.0).width(100.0).height(50.0).color(50, 50, 0).draw(&mut window);
+        Rect::new().x(x).y(10.0).width(100.0).height(50.0).color(50, 50, 0).draw(&mut window);
     }
 
 
