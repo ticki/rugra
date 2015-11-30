@@ -44,11 +44,10 @@ fn main() {
             .size(30)
             .draw(&mut window);
 
-        Label::new(&font)
-            .text("C")
+        Circle::new()
             .set(window.mouse())
             .color(255, 255, 255)
-            .size(30)
+            .radius(30.0)
             .draw(&mut window);
 
         Sprite::new()

@@ -20,14 +20,16 @@ impl<'a> Circle<'a> {
     }
 
     pub fn x(&mut self, x: f32) -> &mut Self {
-        let y = self.circle.get_position().y;
-        self.circle.set_position(&Vector2f::new(x, y));
+        let (_, y) = self.pos();
+        let r = self.circle.get_radius();
+        self.circle.set_position(&Vector2f::new(x - r, y));
         self
     }
 
     pub fn y(&mut self, y: f32) -> &mut Self {
-        let x = self.circle.get_position().x;
-        self.circle.set_position(&Vector2f::new(x, y));
+        let (x, _) = self.pos();
+        let r = self.circle.get_radius();
+        self.circle.set_position(&Vector2f::new(x, y - r));
         self
     }
 
@@ -63,10 +65,10 @@ impl<'a> Circle<'a> {
     }
 
     pub fn length_to(&self, (x, y): (f32, f32)) -> f32 {
-        let pos = self.circle.get_position();
+        let (px, py) = self.pos();
 
-        let dx = x - pos.x;
-        let dy = y - pos.y;
+        let dx = x - px;
+        let dy = y - py;
 
         (dx * dx + dy * dy).sqrt()
     }
@@ -74,7 +76,8 @@ impl<'a> Circle<'a> {
     pub fn pos(&self) -> (f32, f32) {
         let pos = self.circle.get_position();
 
-        (pos.x, pos.y)
+        let r = self.circle.get_radius();
+        (pos.x + r, pos.y + r)
     }
 
     pub fn set(&mut self, (x, y): (f32, f32)) -> &mut Self {
