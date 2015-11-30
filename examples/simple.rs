@@ -11,13 +11,13 @@ fn main() {
         window.clear(0, 0, 0);
         window.listen();
 
-        if window.is_pressed('d') {
+        if window.key('d') {
             x += 2.0;
         }
-        if window.is_pressed('a') {
+        if window.key('a') {
             x -= 2.0;
         }
-        if window.is_pressed('q') {
+        if window.key('q') || window.key(Escape) {
             break;
         }
 

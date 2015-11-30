@@ -12,3 +12,4 @@ pub mod label;
 pub mod texture;
 pub mod font;
 pub mod sound;
+pub mod key;

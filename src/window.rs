@@ -2,14 +2,18 @@ use sfml::window::{ContextSettings, VideoMode, Close};
 use sfml::window::event::Event;
 use sfml::graphics::{RenderWindow, RenderTarget, Color, View};
 use sfml::system::vector2::{Vector2f, ToVec};
+use sfml::window::keyboard::Key as SfmlKey;
+
+use key::{Key, SpecialKey};
 
 use std::mem;
 use std::thread;
 
 pub struct EventState {
-    right: bool,
-    left: bool,
-    keys: String,
+    pub right: bool,
+    pub left: bool,
+    pub chars: String,
+    pub keys: Vec<SpecialKey>,
 }
 
 impl EventState {
@@ -17,14 +21,15 @@ impl EventState {
         EventState {
             right: false,
             left: false,
-            keys: String::new(),
+            chars: String::new(),
+            keys: Vec::new(),
         }
     }
 }
 
 pub struct Window {
     window: RenderWindow,
-    event: EventState,
+    pub event: EventState,
 }
 
 impl Window {
@@ -88,17 +93,21 @@ impl Window {
     }
 
     pub fn is_pressed(&self, c: char) -> bool {
-        self.event.keys.contains(c)
+        self.event.chars.contains(c)
+    }
+
+    pub fn key<T: Key>(&self, k: T) -> bool {
+        k.is_pressed(self)
     }
 
     pub fn poll_char(&mut self) -> String {
-        mem::replace(&mut self.event.keys, String::new())
+        mem::replace(&mut self.event.chars, String::new())
     }
 
     pub fn clear(&mut self, r: u8, g: u8, b: u8) {
         self.window.clear(&Color::new_rgb(r, g, b));
 
-        self.event.keys.clear();
+        self.event.chars.clear();
         self.event.left = false;
         self.event.right = false;
     }
@@ -109,7 +118,7 @@ impl Window {
             match e {
                 Event::TextEntered {
                     code: c
-                } => self.event.keys.push(c),
+                } => self.event.chars.push(c),
                 Event::MouseLeft => self.event.left = true,
                 Event::MouseEntered => self.event.right = true,
                 Event::Closed => self.window.close(),
@@ -119,6 +128,24 @@ impl Window {
                 } => {
                     self.width(width);
                     self.height(height);
+                },
+                Event::KeyPressed {
+                    code: c,
+                    ..
+                } => {
+                    match c {
+                        SfmlKey::Escape => self.event.keys.push(SpecialKey::Escape),
+                        SfmlKey::LControl | SfmlKey::RControl => self.event.keys.push(SpecialKey::Control),
+                        SfmlKey::LShift | SfmlKey::RShift => self.event.keys.push(SpecialKey::Shift),
+                        SfmlKey::LAlt | SfmlKey::RAlt => self.event.keys.push(SpecialKey::Alt),
+                        SfmlKey::Return => self.event.keys.push(SpecialKey::Return),
+                        SfmlKey::BackSpace => self.event.keys.push(SpecialKey::Backspace),
+                        SfmlKey::Left => self.event.keys.push(SpecialKey::Left),
+                        SfmlKey::Right => self.event.keys.push(SpecialKey::Right),
+                        SfmlKey::Up => self.event.keys.push(SpecialKey::Up),
+                        SfmlKey::Down => self.event.keys.push(SpecialKey::Down),
+                        _ => {},
+                    }
                 },
                 _ => {},
             }
