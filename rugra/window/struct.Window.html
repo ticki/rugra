@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Window` struct in crate `rugra`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Window">
+
+    <title>rugra::window::Window - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>rugra</a>::<wbr><a href='index.html'>window</a></p><script>window.sidebarCurrent = {name: 'Window', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>rugra</a>::<wbr><a href='index.html'>window</a>::<wbr><a class='struct' href=''>Window</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-33' class='srclink' href='../../src/rugra/window.rs.html#36-40' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Window {
+    pub event: <a class='struct' href='../../rugra/window/struct.EventState.html' title='rugra::window::EventState'>EventState</a>,
+    // some fields omitted
+}</pre><div class='docblock'><p>Window</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.event'><code>event</code></td><td><div class='docblock'><p>The event state</p>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../rugra/window/struct.Window.html' title='rugra::window::Window'>Window</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(title: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='../../rugra/window/struct.Window.html' title='rugra::window::Window'>Window</a></code></h4>
+<div class='docblock'><p>Create new window</p>
+</div><h4 id='method.width' class='method'><code>fn <a href='#method.width' class='fnname'>width</a>(&amp;mut self, width: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; &amp;mut <a class='struct' href='../../rugra/window/struct.Window.html' title='rugra::window::Window'>Window</a></code></h4>
+<div class='docblock'><p>Set width of the window</p>
+</div><h4 id='method.height' class='method'><code>fn <a href='#method.height' class='fnname'>height</a>(&amp;mut self, height: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; &amp;mut <a class='struct' href='../../rugra/window/struct.Window.html' title='rugra::window::Window'>Window</a></code></h4>
+<div class='docblock'><p>Set the height of the window</p>
+</div><h4 id='method.mouse' class='method'><code>fn <a href='#method.mouse' class='fnname'>mouse</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>)</a></code></h4>
+<div class='docblock'><p>Get the mouse position</p>
+</div><h4 id='method.mx' class='method'><code>fn <a href='#method.mx' class='fnname'>mx</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a></code></h4>
+<div class='docblock'><p>Get the x coordinate of the mouse</p>
+</div><h4 id='method.my' class='method'><code>fn <a href='#method.my' class='fnname'>my</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a></code></h4>
+<div class='docblock'><p>Get the y coordinate of the mouse</p>
+</div><h4 id='method.is_open' class='method'><code>fn <a href='#method.is_open' class='fnname'>is_open</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Check if the window is open</p>
+</div><h4 id='method.left_click' class='method'><code>fn <a href='#method.left_click' class='fnname'>left_click</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Is the left mouse button clicked?</p>
+</div><h4 id='method.right_click' class='method'><code>fn <a href='#method.right_click' class='fnname'>right_click</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Is the right mouse button clicked?</p>
+</div><h4 id='method.key' class='method'><code>fn <a href='#method.key' class='fnname'>key</a>&lt;T: <a class='trait' href='../../rugra/key/trait.Key.html' title='rugra::key::Key'>Key</a>&gt;(&amp;self, k: T) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Is <code>k</code> (char or special key) pressed?</p>
+</div><h4 id='method.poll_char' class='method'><code>fn <a href='#method.poll_char' class='fnname'>poll_char</a>(&amp;mut self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></h4>
+<div class='docblock'><p>Poll the pressed chars</p>
+</div><h4 id='method.clear' class='method'><code>fn <a href='#method.clear' class='fnname'>clear</a>(&amp;mut self, r: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>, g: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>, b: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></h4>
+<div class='docblock'><p>Clear the window</p>
+</div><h4 id='method.listen' class='method'><code>fn <a href='#method.listen' class='fnname'>listen</a>(&amp;mut self)</code></h4>
+<div class='docblock'><p>Listen for events</p>
+</div><h4 id='method.update' class='method'><code>fn <a href='#method.update' class='fnname'>update</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Update the window</p>
+</div><h4 id='method.goto' class='method'><code>fn <a href='#method.goto' class='fnname'>goto</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>)</code></h4>
+<div class='docblock'><p>Change view (camera) of the window</p>
+</div><h4 id='method.to_sfml_window' class='method'><code>fn <a href='#method.to_sfml_window' class='fnname'>to_sfml_window</a>(&amp;mut self) -&gt; &amp;mut RenderWindow</code></h4>
+<div class='docblock'><p>Convert to SFML (backend) window</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rugra";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
