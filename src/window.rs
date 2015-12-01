@@ -46,7 +46,8 @@ impl Window {
             window: RenderWindow::new(VideoMode::new_init(800, 600, 32),
                                       title,
                                       Close,
-                                      &ContextSettings::default()).expect("Could not construct window"),
+                                      &ContextSettings::default())
+                        .expect("Could not construct window"),
             event: EventState::new(),
         }
 
@@ -144,15 +145,17 @@ impl Window {
                 } => {
                     self.width(width);
                     self.height(height);
-                },
+                }
                 Event::KeyPressed {
                     code: c,
                     ..
                 } => {
                     match c {
                         SfmlKey::Escape => self.event.keys.push(SpecialKey::Escape),
-                        SfmlKey::LControl | SfmlKey::RControl => self.event.keys.push(SpecialKey::Control),
-                        SfmlKey::LShift | SfmlKey::RShift => self.event.keys.push(SpecialKey::Shift),
+                        SfmlKey::LControl | SfmlKey::RControl =>
+                            self.event.keys.push(SpecialKey::Control),
+                        SfmlKey::LShift | SfmlKey::RShift =>
+                            self.event.keys.push(SpecialKey::Shift),
                         SfmlKey::LAlt | SfmlKey::RAlt => self.event.keys.push(SpecialKey::Alt),
                         SfmlKey::Return => self.event.keys.push(SpecialKey::Return),
                         SfmlKey::BackSpace => self.event.keys.push(SpecialKey::Backspace),
@@ -160,10 +163,10 @@ impl Window {
                         SfmlKey::Right => self.event.keys.push(SpecialKey::Right),
                         SfmlKey::Up => self.event.keys.push(SpecialKey::Up),
                         SfmlKey::Down => self.event.keys.push(SpecialKey::Down),
-                        _ => {},
+                        _ => {}
                     }
-                },
-                _ => {},
+                }
+                _ => {}
             }
         }
     }
