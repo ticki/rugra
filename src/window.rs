@@ -124,6 +124,7 @@ impl Window {
         self.window.clear(&Color::new_rgb(r, g, b));
 
         self.event.chars.clear();
+        self.keys.clear();
         self.event.left = false;
         self.event.right = false;
     }
