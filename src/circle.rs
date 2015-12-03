@@ -67,7 +67,7 @@ impl<'a> Circle<'a> {
 
     /// Step in the current direction
     pub fn step(&mut self, size: f32) -> &mut Self {
-        let angle = size.to_radians();
+        let angle = self.circle.get_rotation().to_radians();
 
         self.go(angle.cos() * size, angle.sin() * size);
 
