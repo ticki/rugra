@@ -8,6 +8,7 @@ use key::{Key, SpecialKey};
 
 use std::mem;
 use std::thread;
+use std::time::Duration;
 
 /// The event state
 ///
@@ -174,7 +175,7 @@ impl Window {
 
     /// Update the window
     pub fn update(&mut self) -> bool {
-        thread::sleep_ms(50);
+        thread::sleep(Duration::from_millis(50));
 
         self.window.display();
 

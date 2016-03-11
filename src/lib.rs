@@ -1,6 +1,5 @@
 //! Rugra is a ultra minimal graphics engine for Rust.
 
-#![feature(float_extras)]
 #![allow(dead_code)]
 
 extern crate sfml;
