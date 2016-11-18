@@ -2,6 +2,12 @@
 name = "rugra"
 version = "0.1.0"
 authors = ["Ticki <Ticki@users.noreply.github.com>"]
+description = "Small and simple graphics library."
+repository = "https://github.com/ticki/rugra"
+documentation = "https://docs.rs/crate/rugra"
+license = "MIT"
+keywords = ["sfml", "graphics", "2d", "simple", "gamedev"]
+exclude = ["target", "Cargo.lock"]
 
 [dependencies]
 sfml = "0.9.3"
