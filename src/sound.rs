@@ -7,7 +7,7 @@ pub struct Sound {
 
 impl Sound {
     /// Load a sound from a file
-    pub fn load(s: &str) -> Sound {
+    pub fn load(s: &str) -> Self {
         Sound {
             sound: SfmlSound::new_from_file(s).unwrap(),
         }

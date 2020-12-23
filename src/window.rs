@@ -60,7 +60,7 @@ impl Window {
         s.x = width;
 
         self.window.set_size(&s);
-        self.goto(0.0, 0.0);
+        self.goto_center();
 
         self
 
@@ -72,7 +72,7 @@ impl Window {
         s.y = height;
 
         self.window.set_size(&s);
-        self.goto(0.0, 0.0);
+        self.goto_center();
 
         self
 
@@ -187,6 +187,11 @@ impl Window {
     pub fn goto(&mut self, x: f32, y: f32) {
         let size = self.window.get_size().to_vector2f();
         self.window.set_view(&View::new_init(&(Vector2f::new(x, y) + size / 2.0), &size).unwrap());
+    }
+
+
+    fn goto_center(&mut self) {
+        self.goto(0f32,0f32);
     }
 
     /// Convert to SFML (backend) window
